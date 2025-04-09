@@ -1,0 +1,26 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Build output (trừ tệp ZIP)
+dist/*
+!dist/*.zip
+
+# Logs and temporary files
+*.log
+*.log.*
+npm-debug.log*
+
+# Editor-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+*.bak
+*.swp
