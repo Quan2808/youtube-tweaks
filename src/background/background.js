@@ -6,6 +6,7 @@ chrome.runtime.onInstalled.addListener(() => {
       chrome.storage.sync.set({
         ytTweaksSettings: {
           fakeYoutubePremium: false,
+          cleanYtbUrl: true,
           // Thêm các tính năng khác ở đây
         },
       });

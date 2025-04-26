@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fakeYoutubePremiumCheckbox =
     document.getElementById("fakeYoutubePremium");
   const hideAdsCheckbox = document.getElementById("hideAds");
+  const cleanYtbUrlCheckbox = document.getElementById("cleanYtbUrl");
   const status = document.getElementById("status");
 
   // Load settings
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const settings = result.ytTweaksSettings || {};
     fakeYoutubePremiumCheckbox.checked = !!settings.fakeYoutubePremium;
     hideAdsCheckbox.checked = !!settings.hideAds;
+    cleanYtbUrlCheckbox.checked = !!settings.cleanYtbUrl;
   });
 
   // Hàm hiển thị thông báo tạm thời
@@ -28,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const settings = result.ytTweaksSettings || {};
       settings.fakeYoutubePremium = fakeYoutubePremiumCheckbox.checked;
       settings.hideAds = hideAdsCheckbox.checked;
+      settings.cleanYtbUrl = cleanYtbUrlCheckbox.checked;
 
       chrome.storage.sync.set({ ytTweaksSettings: settings }, () => {
         showStatus("Settings applied!");
@@ -44,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Lắng nghe sự thay đổi của checkbox
   fakeYoutubePremiumCheckbox.addEventListener("change", saveSettings);
   hideAdsCheckbox.addEventListener("change", saveSettings);
+  cleanYtbUrlCheckbox.addEventListener("change", saveSettings);
 
   // Đồng bộ khi có thay đổi từ nơi khác (nếu cần)
   chrome.storage.onChanged.addListener((changes) => {
@@ -51,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const settings = changes.ytTweaksSettings.newValue || {};
       fakeYoutubePremiumCheckbox.checked = !!settings.fakeYoutubePremium;
       hideAdsCheckbox.checked = !!settings.hideAds;
+      cleanYtbUrlCheckbox.checked = !!settings.cleanYtbUrl;
     }
   });
 });

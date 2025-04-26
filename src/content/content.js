@@ -1,6 +1,7 @@
 import { isYouTubePage } from "./utils/youtubeCheck.js";
 import * as premiumLogo from "./tweaks/premiumLogo.js";
 import * as hideAds from "./tweaks/hideAds.js";
+import * as cleanShareUrl from "./tweaks/cleanShareUrl.js";
 
 import {
   initializeTweaks,
@@ -16,6 +17,10 @@ const tweaks = {
   hideAds: {
     enable: () => hideAds.enable(isYouTubePage),
     disable: hideAds.disable,
+  },
+  cleanYtbUrl: {
+    enable: () => cleanShareUrl.enable(isYouTubePage),
+    disable: cleanShareUrl.disable,
   },
   // Thêm các tweak khác ở đây trong tương lai, ví dụ:
   // hideAds: { enable: ..., disable: ... },
