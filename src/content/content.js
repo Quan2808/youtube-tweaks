@@ -1,32 +1,28 @@
 import { isYouTubePage } from "./utils/youtubeCheck.js";
 import * as premiumLogo from "./tweaks/premiumLogo.js";
-import * as hideAds from "./tweaks/hideAds.js";
 import * as cleanShareUrl from "./tweaks/cleanShareUrl.js";
-
+import * as returnDislikeCounter from "./tweaks/returnDislikeCounter.js";
 import {
   initializeTweaks,
   listenToSettingsChanges,
 } from "./settingsManager.js";
 
-// Định nghĩa các tweak
+// Define tweaks
 const tweaks = {
   fakeYoutubePremium: {
     enable: () => premiumLogo.enable(isYouTubePage),
     disable: premiumLogo.disable,
   },
-  hideAds: {
-    enable: () => hideAds.enable(isYouTubePage),
-    disable: hideAds.disable,
-  },
   cleanYtbUrl: {
     enable: () => cleanShareUrl.enable(isYouTubePage),
     disable: cleanShareUrl.disable,
   },
-  // Thêm các tweak khác ở đây trong tương lai, ví dụ:
-  // hideAds: { enable: ..., disable: ... },
-  // darkMode: { enable: ..., disable: ... },
+  returnDislikeCounter: {
+    enable: () => returnDislikeCounter.enable(isYouTubePage),
+    disable: returnDislikeCounter.disable,
+  },
 };
 
-// Khởi chạy extension
+// Initialize extension
 initializeTweaks(tweaks);
 listenToSettingsChanges(tweaks);

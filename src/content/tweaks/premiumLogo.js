@@ -3,17 +3,17 @@ const textSection = `<path d="M68.4103 9.09902V18.5557H65.5928V9.30834C65.5928 8
 const fullLogo = logoSection + textSection;
 
 function addTweaksStyle() {
-  if (document.getElementById("yt-tweaks-style")) return;
+  if (document.getElementById("yt-tweaks-premium-logo")) return;
 
   const style = document.createElement("style");
-  style.id = "yt-tweaks-style";
+  style.id = "yt-tweaks-premium-logo";
   style.textContent = `.nice-logo-container.nice-logo,nice-logo{display:-ms-inline-flexbox;display:-webkit-inline-flex;display:inline-flex;-ms-flex-align:center;-webkit-align-items:center;align-items:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;position:relative;vertical-align:middle;fill:var(--iron-icon-fill-color,currentcolor);stroke:var(--iron-icon-stroke-color,none);width:var(--iron-icon-width,24px);height:var(--iron-icon-height,24px);margin-left:var(--iron-icon_-_margin-left);margin-bottom:var(--iron-icon_-_margin-bottom);margin-right:var(--iron-icon_-_margin-right);width:var(--iron-icon_-_width,var(--iron-icon-width,24px));height:var(--iron-icon_-_height,var(--iron-icon-height,24px));margin-top:var(--iron-icon_-_margin-top)} nice-logo.ytd-topbar-logo-renderer{height:20px;width:90px;padding:18px 14px 18px 16px;color:var(--yt-spec-wordmark-text);-ms-flex:none;-webkit-flex:none;flex:none}`;
   document.head.appendChild(style);
 }
 
 // Xóa style
 function removeTweaksStyle() {
-  const styleElement = document.getElementById("yt-tweaks-style");
+  const styleElement = document.getElementById("yt-tweaks-premium-logo");
   if (styleElement) {
     styleElement.remove();
   }
