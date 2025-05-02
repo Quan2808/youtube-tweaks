@@ -2,6 +2,7 @@ import { isYouTubePage } from "./utils/youtubeCheck.js";
 import * as premiumLogo from "./tweaks/premiumLogo.js";
 import * as cleanShareUrl from "./tweaks/cleanShareUrl.js";
 import * as returnDislikeCounter from "./tweaks/returnDislikeCounter.js";
+import * as volumeBoost from "./tweaks/volumeBoost.js";
 import {
   initializeTweaks,
   listenToSettingsChanges,
@@ -20,6 +21,10 @@ const tweaks = {
   returnDislikeCounter: {
     enable: () => returnDislikeCounter.enable(isYouTubePage),
     disable: returnDislikeCounter.disable,
+  },
+  volumeBoost: {
+    enable: () => volumeBoost.enable(isYouTubePage),
+    disable: volumeBoost.disable,
   },
 };
 
