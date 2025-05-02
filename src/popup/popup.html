@@ -16,7 +16,6 @@
 
       <div class="card animate__animated animate__fadeInUp">
         <div class="card-body p-4">
-          <!-- Fake YouTube Premium Checkbox -->
           <div
             class="form-check mb-4 hover-overlay ripple"
             data-mdb-ripple-color="danger"
@@ -31,7 +30,6 @@
             </label>
           </div>
 
-          <!-- Clean YouTube URL Checkbox -->
           <div class="form-check mb-4 ripple" data-mdb-ripple-color="danger">
             <input class="form-check-input" type="checkbox" id="cleanYtbUrl" />
             <label class="form-check-label fw-medium" for="cleanYtbUrl">
@@ -39,7 +37,6 @@
             </label>
           </div>
 
-          <!-- Return Dislike Counter Checkbox -->
           <div class="form-check mb-4 ripple" data-mdb-ripple-color="danger">
             <input
               class="form-check-input"
@@ -54,34 +51,6 @@
             </label>
           </div>
 
-          <!-- Volume Boost Checkbox -->
-          <div class="form-check mb-4 ripple" data-mdb-ripple-color="danger">
-            <input class="form-check-input" type="checkbox" id="volumeBoost" />
-            <label class="form-check-label fw-medium" for="volumeBoost">
-              <i class="text-primary me-2"></i>Enable Volume Boost
-            </label>
-          </div>
-
-          <!-- Volume Boost Range Slider -->
-          <div class="range mb-4">
-            <label for="volumeBoostAmount" class="form-label fw-medium">
-              Volume Boost Amount (dB)
-            </label>
-            <input
-              type="range"
-              class="form-range"
-              min="0"
-              max="12"
-              step="0.5"
-              id="volumeBoostAmount"
-              data-mdb-range-init
-            />
-            <div class="text-center mt-2">
-              <span id="volumeBoostValue">6</span> dB
-            </div>
-          </div>
-
-          <!-- Status Message -->
           <div
             id="status"
             class="status text-center mt-3 text-success fw-medium"
@@ -93,7 +62,8 @@
     </div>
 
     <!-- MDB JS -->
-    <script src="../assets/js/mdb.min.js"></script>
+    <script src="../assets/js/core.min.js"></script>
+
     <script src="popup.js"></script>
   </body>
 </html>
