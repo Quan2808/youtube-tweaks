@@ -58,17 +58,17 @@ async function fetchDislikeCount(videoId) {
   const apiUrl = `https://returnyoutubedislikeapi.com/votes?videoId=${videoId}`;
   try {
     const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error("Network response was not ok");
+    // if (!response.ok) throw new Error("Network response was not ok");
     const data = await response.json();
     if (data && data.dislikes !== undefined) {
       const formattedCount = formatCount(data.dislikes);
       dislikeCache[videoId] = formattedCount;
       return formattedCount;
     }
-    return "API Error";
+    return null;
   } catch (error) {
     console.error("Error fetching dislike data:", error);
-    return "Error";
+    return null;
   }
 }
 
@@ -92,7 +92,7 @@ async function addDislikeCounts() {
     dislikeCountEl.dataset.videoId = videoId;
     button.appendChild(dislikeCountEl);
 
-    dislikeCountEl.textContent = "..."; // Loading indicator
+    // dislikeCountEl.textContent = "..."; // Loading indicator
     const dislikeCount = await fetchDislikeCount(videoId);
     if (dislikeCountEl.dataset.videoId === videoId) {
       dislikeCountEl.textContent = dislikeCount;

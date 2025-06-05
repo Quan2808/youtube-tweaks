@@ -26,20 +26,30 @@
               Premium Features
             </div>
 
-            <div class="feature-item">
+            <div
+              class="feature-item d-flex justify-content-between align-items-center"
+            >
               <div>
                 <div class="feature-label">
                   <i class="fas fa-gem text-warning"></i>
                   Fake YouTube Premium Icon
                 </div>
-                <div class="feature-description">
+                <label
+                  class="feature-description mb-0"
+                  for="fakeYoutubePremium"
+                >
                   Display premium badge in your account
-                </div>
+                </label>
               </div>
-              <label class="custom-switch">
-                <input type="checkbox" id="fakeYoutubePremium" />
-                <span class="slider"></span>
-              </label>
+
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="fakeYoutubePremium"
+                />
+              </div>
             </div>
           </div>
 
@@ -50,36 +60,53 @@
               Enhancement Features
             </div>
 
-            <div class="feature-item">
+            <div
+              class="feature-item d-flex justify-content-between align-items-center"
+            >
               <div>
                 <div class="feature-label">
-                  <i class="fas fa-link text-success"></i>
+                  <i class="fas fa-link text-accent"></i>
                   Clean Share URLs
                 </div>
-                <div class="feature-description">
+                <label class="feature-description mb-0" for="cleanYtbUrl">
                   Remove tracking parameters from shared links
-                </div>
+                </label>
               </div>
-              <label class="custom-switch">
-                <input type="checkbox" id="cleanYtbUrl" />
-                <span class="slider"></span>
-              </label>
+
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="cleanYtbUrl"
+                />
+              </div>
             </div>
 
-            <div class="feature-item">
+            <div
+              class="feature-item d-flex justify-content-between align-items-center"
+            >
               <div>
                 <div class="feature-label">
-                  <i class="fas fa-thumbs-down text-success"></i>
+                  <i class="fas fa-link text-accent"></i>
                   Return Dislike Counter
                 </div>
-                <div class="feature-description">
+                <label
+                  class="feature-description mb-0"
+                  for="returnDislikeCounter"
+                >
                   Show dislike counts on videos again
-                </div>
+                </label>
               </div>
-              <label class="custom-switch">
-                <input type="checkbox" id="returnDislikeCounter" />
-                <span class="slider"></span>
-              </label>
+
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="returnDislikeCounter"
+                />
+              </div>
             </div>
           </div>
 
