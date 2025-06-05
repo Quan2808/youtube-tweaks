@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "returnDislikeCounter"
   );
   const saveButton = document.getElementById("saveButton");
+  const saveButtonText = document.getElementById("saveButtonText");
   const status = document.getElementById("status");
 
   let hasUnsavedChanges = false;
@@ -20,37 +21,50 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSaveButtonState();
   });
 
-  // Show temporary status message
-  const showStatus = (message, color = "green") => {
+  // Show status message with animation
+  const showStatus = (message, type = "success") => {
     status.textContent = message;
-    status.style.color = color;
-    status.style.marginTop = "10px";
-    status.style.textAlign = "center";
+    status.className = `status-message status-${type}`;
+    status.style.display = "block";
+    status.style.opacity = "0";
+    status.style.transform = "translateY(10px)";
+
+    // Animate in
     setTimeout(() => {
-      status.textContent = "";
-    }, 2000);
+      status.style.opacity = "1";
+      status.style.transform = "translateY(0)";
+    }, 10);
+
+    // Animate out
+    setTimeout(() => {
+      status.style.opacity = "0";
+      status.style.transform = "translateY(-10px)";
+      setTimeout(() => {
+        status.style.display = "none";
+      }, 300);
+    }, 3000);
   };
 
-  // Update save button state based on unsaved changes
+  // Update save button state
   const updateSaveButtonState = () => {
     if (hasUnsavedChanges) {
-      saveButton.textContent = "Save Settings";
-      saveButton.className = "btn btn-warning btn-lg px-4 py-2 fw-medium";
+      saveButton.className = "btn save-btn text-white changed";
+      saveButtonText.textContent = "Save Changes";
       saveButton.disabled = false;
     } else {
-      saveButton.textContent = "Settings Saved";
-      saveButton.className = "btn btn-success btn-lg px-4 py-2 fw-medium";
+      saveButton.className = "btn save-btn text-white";
+      saveButtonText.textContent = "Settings Saved";
       saveButton.disabled = true;
     }
   };
 
-  // Mark as having unsaved changes when any checkbox changes
+  // Mark as having unsaved changes
   const markAsChanged = () => {
     hasUnsavedChanges = true;
     updateSaveButtonState();
   };
 
-  // Save settings when save button is clicked
+  // Save settings
   const saveSettings = () => {
     const settings = {
       fakeYoutubePremium: fakeYoutubePremiumCheckbox.checked,
@@ -58,35 +72,40 @@ document.addEventListener("DOMContentLoaded", () => {
       returnDislikeCounter: returnDislikeCounterCheckbox.checked,
     };
 
+    // Add loading state
+    saveButton.disabled = true;
+    saveButtonText.innerHTML =
+      '<i class="fas fa-spinner fa-spin me-2"></i>Saving...';
+
     chrome.storage.sync.set({ ytTweaksSettings: settings }, () => {
       hasUnsavedChanges = false;
       updateSaveButtonState();
-      showStatus("Settings saved successfully!", "green");
+      showStatus("Settings saved successfully!", "success");
 
-      // Refresh active YouTube tabs to apply changes
+      // Refresh active YouTube tabs
       chrome.tabs.query({ url: "*://*.youtube.com/*" }, (tabs) => {
         if (tabs.length > 0) {
           tabs.forEach((tab) => {
             chrome.tabs.reload(tab.id);
           });
-          showStatus(
-            `Settings applied to ${tabs.length} YouTube tab(s)!`,
-            "blue"
-          );
+          setTimeout(() => {
+            showStatus(
+              `Changes applied to ${tabs.length} YouTube tab${tabs.length > 1 ? "s" : ""}!`,
+              "info"
+            );
+          }, 1000);
         }
       });
     });
   };
 
-  // Listen for checkbox changes
+  // Event listeners
   fakeYoutubePremiumCheckbox.addEventListener("change", markAsChanged);
   cleanYtbUrlCheckbox.addEventListener("change", markAsChanged);
   returnDislikeCounterCheckbox.addEventListener("change", markAsChanged);
-
-  // Listen for save button click
   saveButton.addEventListener("click", saveSettings);
 
-  // Sync settings from other sources
+  // Sync settings from storage changes
   chrome.storage.onChanged.addListener((changes) => {
     if (changes.ytTweaksSettings) {
       const settings = changes.ytTweaksSettings.newValue || {};
@@ -98,6 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initialize button state
+  // Initialize
   updateSaveButtonState();
 });

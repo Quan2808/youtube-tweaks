@@ -4,74 +4,99 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouTube Tweaks</title>
-    <link rel="stylesheet" href="../assets/css/animate.min.css" />
-    <link rel="stylesheet" href="../assets/css/plugins.bundle.css" />
-    <link rel="stylesheet" href="../assets/css/style.bundle.css" />
+    <link rel="stylesheet" href="../assets/lib/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/lib/fontawesome/all.min.css" />
   </head>
   <body>
     <div class="container">
-      <h1 class="h3 mb-4 text-center fw-bold animate__animated animate__fadeIn">
-        <i class="text-danger me-2"></i>YouTube Tweaks
-      </h1>
-
-      <div class="card animate__animated animate__fadeInUp">
+      <div class="main-card">
         <div class="card-body p-4">
-          <div
-            class="form-check mb-4 hover-overlay ripple"
-            data-mdb-ripple-color="danger"
-          >
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="fakeYoutubePremium"
-            />
-            <label class="form-check-label fw-medium" for="fakeYoutubePremium">
-              <i class="text-warning me-2"></i>Fake YouTube Premium Icon
-            </label>
+          <div class="text-center mb-4">
+            <h1 class="app-title">
+              <i class="fab fa-youtube youtube-icon me-2"></i>
+              YouTube Tweaks
+            </h1>
+            <p class="subtitle">Enhance your YouTube experience</p>
           </div>
 
-          <div class="form-check mb-4 ripple" data-mdb-ripple-color="danger">
-            <input class="form-check-input" type="checkbox" id="cleanYtbUrl" />
-            <label class="form-check-label fw-medium" for="cleanYtbUrl">
-              <i class="text-success me-2"></i>Clean Share YouTube URL
-            </label>
+          <!-- Premium Features Section -->
+          <div class="feature-section premium">
+            <div class="section-title">
+              <i class="fas fa-crown"></i>
+              Premium Features
+            </div>
+
+            <div class="feature-item">
+              <div>
+                <div class="feature-label">
+                  <i class="fas fa-gem text-warning"></i>
+                  Fake YouTube Premium Icon
+                </div>
+                <div class="feature-description">
+                  Display premium badge in your account
+                </div>
+              </div>
+              <label class="custom-switch">
+                <input type="checkbox" id="fakeYoutubePremium" />
+                <span class="slider"></span>
+              </label>
+            </div>
           </div>
 
-          <div class="form-check mb-4 ripple" data-mdb-ripple-color="danger">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="returnDislikeCounter"
-            />
-            <label
-              class="form-check-label fw-medium"
-              for="returnDislikeCounter"
-            >
-              <i class="text-success me-2"></i>Return Dislike Counter
-            </label>
+          <!-- Enhancement Features Section -->
+          <div class="feature-section enhancement">
+            <div class="section-title">
+              <i class="fas fa-tools"></i>
+              Enhancement Features
+            </div>
+
+            <div class="feature-item">
+              <div>
+                <div class="feature-label">
+                  <i class="fas fa-link text-success"></i>
+                  Clean Share URLs
+                </div>
+                <div class="feature-description">
+                  Remove tracking parameters from shared links
+                </div>
+              </div>
+              <label class="custom-switch">
+                <input type="checkbox" id="cleanYtbUrl" />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="feature-item">
+              <div>
+                <div class="feature-label">
+                  <i class="fas fa-thumbs-down text-success"></i>
+                  Return Dislike Counter
+                </div>
+                <div class="feature-description">
+                  Show dislike counts on videos again
+                </div>
+              </div>
+              <label class="custom-switch">
+                <input type="checkbox" id="returnDislikeCounter" />
+                <span class="slider"></span>
+              </label>
+            </div>
           </div>
 
-          <div class="text-center mt-4">
-            <button
-              id="saveButton"
-              class="btn btn-primary btn-lg px-4 py-2 fw-medium"
-              type="button"
-            >
-              <i class="fas fa-save me-2"></i>Save Settings
+          <!-- Save Button -->
+          <div class="text-center">
+            <button id="saveButton" class="btn save-btn text-white">
+              <i class="fas fa-save me-2"></i>
+              <span id="saveButtonText">Settings Saved</span>
             </button>
           </div>
 
-          <div
-            id="status"
-            class="status text-center mt-3 text-success fw-medium"
-          >
-            <!-- Status messages will appear here -->
-          </div>
+          <!-- Status Message -->
+          <div id="status" class="status-message" style="display: none"></div>
         </div>
       </div>
     </div>
 
-    <script src="../assets/js/plugins.bundle.js"></script>
-    <script src="../assets/js/scripts.bundle.js"></script>
+    <script src="../assets/lib/bootstrap/bootstrap.bundle.min.js"></script>
   </body>
 </html>
