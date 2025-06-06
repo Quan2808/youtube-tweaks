@@ -1,6 +1,6 @@
 {
   "name": "youtube-tweaks-extension",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
@@ -26,7 +26,7 @@
   ],
   "author": "quan2808",
   "license": "ISC",
-  "description": "",
+  "description": "This extension combines practical tweaks to tailor YouTube to your preferences.",
   "devDependencies": {
     "@babel/core": "^7.26.10",
     "@babel/preset-env": "^7.26.9",

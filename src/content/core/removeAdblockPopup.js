@@ -10,26 +10,29 @@ export function removeAdblockPopup() {
     const bodyStyle = document.body.style;
     bodyStyle.setProperty("overflow-y", "auto", "important");
 
-    if (modalOverlay) {
-      modalOverlay.removeAttribute("opened");
-      modalOverlay.remove();
-    }
-
-    if (popup) {
-      if (dismissButton) {
-        dismissButton.click();
+    if (modalOverlay || popup) {
+      if (modalOverlay) {
+        modalOverlay.removeAttribute("opened");
+        modalOverlay.remove();
       }
-      popup.remove();
-      video.play();
 
-      setTimeout(() => {
-        video.play();
-      }, 500);
-    }
+      if (popup) {
+        if (dismissButton) {
+          dismissButton.click();
+        }
+        popup.remove();
+        // Only attempt to play the video if it was paused due to the popup
+        if (video && video.paused) {
+          video.play().catch((error) => {
+            console.error("Failed to play video:", error);
+          });
+        }
+      }
 
-    if (!video.paused) {
-      return;
+      if (modalOverlay) {
+        modalOverlay.removeAttribute("opened");
+        modalOverlay.remove();
+      }
     }
-    video.play();
   }, 1000);
 }
