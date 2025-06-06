@@ -15,7 +15,8 @@
     "version:minor:build": "npm run version:minor && npm run build",
     "version:major:build": "npm run version:major && npm run build",
     "release:local": "npm run build && echo 'Ready for GitHub Release'",
-    "prepare-release": "npm run lint && npm run format && npm run build"
+    "prepare-release": "npm run lint && npm run format && npm run build",
+    "release:patch:commit": "npm run version:patch && git add . && git commit -m \"Release v$(node -p \\\"require('./package.json').version\\\")\" && git push origin main"
   },
   "keywords": [
     "youtube",
