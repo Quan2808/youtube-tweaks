@@ -1,3 +1,5 @@
+import { displayExtensionVersion } from "../utils/versionChecker";
+
 document.addEventListener("DOMContentLoaded", () => {
   const fakeYoutubePremiumCheckbox =
     document.getElementById("fakeYoutubePremium");
@@ -119,14 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize
   updateSaveButtonState();
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const version = chrome.runtime.getManifest().version;
-  const versionElement = document.getElementById("extensionVersion");
-  if (versionElement) {
-    versionElement.textContent = `v${version}`;
-  }
+  displayExtensionVersion();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
