@@ -28,11 +28,6 @@ export function removeAdblockPopup() {
           });
         }
       }
-
-      if (modalOverlay) {
-        modalOverlay.removeAttribute("opened");
-        modalOverlay.remove();
-      }
     }
   }, 1000);
 }
