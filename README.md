@@ -14,9 +14,12 @@
 <h2>Credits</h2>
 <ul>
     <li>
-        <strong>Fake YouTube Premium Icon</strong>: Adapted from <a href="https://github.com/anubiskun/fake-youtube-premium-extension" target="_blank" rel="noopener noreferrer">anubiskun/fake-youtube-premium-extension</a> by <a href="https://github.com/anubiskun" target="_blank" rel="noopener noreferrer">anubiskun</a>.
+        <strong>Fake YouTube Premium Badge</strong>: Adapted from <a href="https://github.com/anubiskun/fake-youtube-premium-extension" target="_blank" rel="noopener noreferrer">anubiskun/fake-youtube-premium-extension</a> by <a href="https://github.com/anubiskun" target="_blank" rel="noopener noreferrer">anubiskun</a>.
     </li>
     <li>
         <strong>Return YouTube Dislike</strong>: Inspired by <a href="https://github.com/Anarios/return-youtube-dislike" target="_blank" rel="noopener noreferrer">Anarios/return-youtube-dislike</a> by <a href="https://github.com/Anarios" target="_blank" rel="noopener noreferrer">Anarios</a>.
+    </li>
+     <li>
+        <strong>Expand Theatre Mode</strong>: Adapted from <a href="https://github.com/SimenMH/better-youtube-theatre-mode" target="_blank" rel="noopener noreferrer">SimenMH/better-youtube-theatre-mode</a> by <a href="https://github.com/SimenMH" target="_blank" rel="noopener noreferrer">SimenMH</a>.
     </li>
 </ul>

@@ -2,6 +2,7 @@ import { isYouTubePage } from "./utils/youtubeCheck.js";
 import * as premiumLogo from "./tweaks/premiumLogo.js";
 import * as cleanShareUrl from "./tweaks/cleanShareUrl.js";
 import * as returnDislikeCounter from "./tweaks/returnDislikeCounter.js";
+import * as expandTheatreMode from "./tweaks/expandTheatreMode.js";
 import { removeAdblockPopup } from "./core/removeAdblockPopup.js";
 
 import {
@@ -22,6 +23,10 @@ const tweaks = {
   returnDislikeCounter: {
     enable: () => returnDislikeCounter.enable(isYouTubePage),
     disable: returnDislikeCounter.disable,
+  },
+  expandTheatreMode: {
+    enable: () => expandTheatreMode.enable(isYouTubePage),
+    disable: expandTheatreMode.disable,
   },
 };
 

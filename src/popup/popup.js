@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const returnDislikeCounterCheckbox = document.getElementById(
     "returnDislikeCounter"
   );
+  const expandTheatreModeCheckbox =
+    document.getElementById("expandTheatreMode");
   const saveButton = document.getElementById("saveButton");
   const saveButtonText = document.getElementById("saveButtonText");
   const status = document.getElementById("status");
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fakeYoutubePremiumCheckbox.checked = !!settings.fakeYoutubePremium;
     cleanYtbUrlCheckbox.checked = !!settings.cleanYtbUrl;
     returnDislikeCounterCheckbox.checked = !!settings.returnDislikeCounter;
+    expandTheatreModeCheckbox.checked = !!settings.expandTheatreMode;
     hasUnsavedChanges = false;
     updateSaveButtonState();
   });
@@ -73,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fakeYoutubePremium: fakeYoutubePremiumCheckbox.checked,
       cleanYtbUrl: cleanYtbUrlCheckbox.checked,
       returnDislikeCounter: returnDislikeCounterCheckbox.checked,
+      expandTheatreMode: expandTheatreModeCheckbox.checked,
     };
 
     // Add loading state
@@ -106,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fakeYoutubePremiumCheckbox.addEventListener("change", markAsChanged);
   cleanYtbUrlCheckbox.addEventListener("change", markAsChanged);
   returnDislikeCounterCheckbox.addEventListener("change", markAsChanged);
+  expandTheatreModeCheckbox.addEventListener("change", markAsChanged);
   saveButton.addEventListener("click", saveSettings);
 
   // Sync settings from storage changes
@@ -115,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fakeYoutubePremiumCheckbox.checked = !!settings.fakeYoutubePremium;
       cleanYtbUrlCheckbox.checked = !!settings.cleanYtbUrl;
       returnDislikeCounterCheckbox.checked = !!settings.returnDislikeCounter;
+      expandTheatreModeCheckbox.checked = !!settings.expandTheatreMode;
       hasUnsavedChanges = false;
       updateSaveButtonState();
     }
