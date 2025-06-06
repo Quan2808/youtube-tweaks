@@ -1,6 +1,6 @@
 {
   "name": "youtube-tweaks-extension",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
@@ -14,9 +14,8 @@
     "version:patch:build": "npm run version:patch && npm run build",
     "version:minor:build": "npm run version:minor && npm run build",
     "version:major:build": "npm run version:major && npm run build",
-    "release:patch": "npm run version:patch && npm run build && git add . && git commit -m \"Release v$(node -p \"require('./package.json').version\")\" && git tag v$(node -p \"require('./package.json').version\")",
-    "release:minor": "npm run version:minor && npm run build && git add . && git commit -m \"Release v$(node -p \"require('./package.json').version\")\" && git tag v$(node -p \"require('./package.json').version\")",
-    "release:major": "npm run version:major && npm run build && git add . && git commit -m \"Release v$(node -p \"require('./package.json').version\")\" && git tag v$(node -p \"require('./package.json').version\")"
+    "release:local": "npm run build && echo 'Ready for GitHub Release'",
+    "prepare-release": "npm run lint && npm run format && npm run build"
   },
   "keywords": [
     "youtube",
