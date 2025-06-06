@@ -120,3 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize
   updateSaveButtonState();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const version = chrome.runtime.getManifest().version;
+  const versionElement = document.getElementById("extensionVersion");
+  if (versionElement) {
+    versionElement.textContent = `v${version}`;
+  }
+});
