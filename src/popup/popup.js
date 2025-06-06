@@ -1,4 +1,5 @@
 import { displayExtensionVersion } from "../utils/versionChecker";
+import { initializeCollapsibleSections } from "../utils/collapseHandler.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const fakeYoutubePremiumCheckbox =
@@ -122,36 +123,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize
   updateSaveButtonState();
   displayExtensionVersion();
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleIcons = document.querySelectorAll(".collapseToggleIcon");
-
-  toggleIcons.forEach((icon) => {
-    const targetId = icon.getAttribute("data-collapse-target");
-    const collapseElement = document.getElementById(targetId);
-
-    if (!collapseElement) return;
-
-    const collapseInstance = new mdb.Collapse(collapseElement, {
-      toggle: false,
-    });
-
-    const sectionTitle = icon.closest(".section-title");
-    if (sectionTitle) {
-      sectionTitle.addEventListener("click", () => {
-        collapseInstance.toggle();
-      });
-    }
-
-    collapseElement.addEventListener("show.mdb.collapse", () => {
-      icon.classList.remove("fa-plus");
-      icon.classList.add("fa-minus");
-    });
-
-    collapseElement.addEventListener("hide.mdb.collapse", () => {
-      icon.classList.remove("fa-minus");
-      icon.classList.add("fa-plus");
-    });
-  });
+  initializeCollapsibleSections();
 });
