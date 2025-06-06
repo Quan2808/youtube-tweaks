@@ -4,7 +4,7 @@ export function removeAdblockPopup() {
     const popup = document.querySelector(
       ".style-scope ytd-enforcement-message-view-model"
     );
-    const popupButton = document.getElementById("dismiss-button");
+    const dismissButton = document.getElementById("dismiss-button");
     const video = document.querySelector("video");
 
     const bodyStyle = document.body.style;
@@ -16,8 +16,8 @@ export function removeAdblockPopup() {
     }
 
     if (popup) {
-      if (popupButton) {
-        popupButton.click();
+      if (dismissButton) {
+        dismissButton.click();
       }
       popup.remove();
       video.play();
