@@ -1,8 +1,15 @@
+@font-face {
+  font-family: "YouTube Sans";
+  src: url("../assets/fonts/@youtube-sans/YouTubeSansRegular.otf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   min-width: 450px;
-  font-family: Arial, sans-serif;
 }
 
 .container {
@@ -65,14 +72,6 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.premium .section-title {
-  color: #f39c12;
-}
-
-.enhancement .section-title {
-  color: #00a085;
 }
 
 .custom-switch {
@@ -210,4 +209,8 @@ input:checked + .slider:before {
 
 .text-accent {
   color: #00a085;
+}
+
+.text-amber {
+  color: #f39c12;
 }

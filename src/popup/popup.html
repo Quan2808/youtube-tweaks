@@ -20,95 +20,129 @@
           </div>
 
           <!-- Premium Features Section -->
-          <div class="feature-section premium">
-            <div class="section-title">
-              <i class="fas fa-crown"></i>
-              Premium Features
-            </div>
-
+          <section class="feature-section premium">
             <div
-              class="feature-item d-flex justify-content-between align-items-center"
+              class="section-title text-amber d-flex justify-content-between align-items-center"
+              data-mdb-collapse-init
+              href="#collapsePremium"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapsePremium"
             >
-              <div>
-                <div class="feature-label">
-                  <i class="fas fa-gem text-warning"></i>
-                  Fake YouTube Premium Icon
-                </div>
-                <label
-                  class="feature-description mb-0"
-                  for="fakeYoutubePremium"
-                >
-                  Display premium badge in your account
-                </label>
+              <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-crown text-warning"></i>
+                <span>Premium Features</span>
               </div>
+              <span class="badge badge-info">
+                <i
+                  class="fa-solid fa-plus collapseToggleIcon"
+                  data-collapse-target="collapsePremium"
+                ></i>
+              </span>
+            </div>
 
-              <div class="form-check form-switch">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  id="fakeYoutubePremium"
-                />
+            <div class="collapse" id="collapsePremium">
+              <div
+                class="feature-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <div class="feature-label">
+                    <i class="fas fa-gem text-warning"></i>
+                    Fake YouTube Premium Icon
+                  </div>
+                  <label
+                    class="feature-description mb-0"
+                    for="fakeYoutubePremium"
+                  >
+                    Display premium badge
+                  </label>
+                </div>
+
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="fakeYoutubePremium"
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </section>
 
           <!-- Enhancement Features Section -->
-          <div class="feature-section enhancement">
-            <div class="section-title">
-              <i class="fas fa-tools"></i>
-              Enhancement Features
-            </div>
-
+          <section class="feature-section enhancement">
             <div
-              class="feature-item d-flex justify-content-between align-items-center"
+              class="section-title text-accent d-flex justify-content-between align-items-center"
+              data-mdb-collapse-init
+              href="#collapseEnhancement"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseEnhancement"
             >
-              <div>
-                <div class="feature-label">
-                  <i class="fas fa-link text-accent"></i>
-                  Clean Share URLs
-                </div>
-                <label class="feature-description mb-0" for="cleanYtbUrl">
-                  Remove tracking parameters from shared links
-                </label>
+              <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-tools"></i>
+                Enhancement Features
               </div>
-
-              <div class="form-check form-switch">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  id="cleanYtbUrl"
-                />
-              </div>
+              <span class="badge badge-info">
+                <i
+                  class="fa-solid fa-plus collapseToggleIcon"
+                  data-collapse-target="collapseEnhancement"
+                ></i>
+              </span>
             </div>
 
-            <div
-              class="feature-item d-flex justify-content-between align-items-center"
-            >
-              <div>
-                <div class="feature-label">
-                  <i class="fas fa-link text-accent"></i>
-                  Return Dislike Counter
+            <div class="collapse" id="collapseEnhancement">
+              <div
+                class="feature-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <div class="feature-label">
+                    <i class="fas fa-link text-accent"></i>
+                    Clean Share URLs
+                  </div>
+                  <label class="feature-description mb-0" for="cleanYtbUrl">
+                    Remove tracking parameters from shared links
+                  </label>
                 </div>
-                <label
-                  class="feature-description mb-0"
-                  for="returnDislikeCounter"
-                >
-                  Show dislike counts on videos again
-                </label>
+
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="cleanYtbUrl"
+                  />
+                </div>
               </div>
 
-              <div class="form-check form-switch">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  id="returnDislikeCounter"
-                />
+              <div
+                class="feature-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <div class="feature-label">
+                    <i class="fas fa-link text-accent"></i>
+                    Return Dislike Counter
+                  </div>
+                  <label
+                    class="feature-description mb-0"
+                    for="returnDislikeCounter"
+                  >
+                    Show dislike counts on videos again
+                  </label>
+                </div>
+
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="returnDislikeCounter"
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </section>
 
           <!-- Save Button -->
           <div class="text-center">
