@@ -59,6 +59,7 @@ async function fetchDislikeCount(videoId) {
   try {
     const response = await fetch(apiUrl);
     // if (!response.ok) throw new Error("Network response was not ok");
+    if (!response.ok) return null;
     const data = await response.json();
     if (data && data.dislikes !== undefined) {
       const formattedCount = formatCount(data.dislikes);

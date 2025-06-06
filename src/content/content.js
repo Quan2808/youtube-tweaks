@@ -2,6 +2,8 @@ import { isYouTubePage } from "./utils/youtubeCheck.js";
 import * as premiumLogo from "./tweaks/premiumLogo.js";
 import * as cleanShareUrl from "./tweaks/cleanShareUrl.js";
 import * as returnDislikeCounter from "./tweaks/returnDislikeCounter.js";
+import { removeAdblockPopup } from "./core/removeAdblockPopup.js";
+
 import {
   initializeTweaks,
   listenToSettingsChanges,
@@ -22,6 +24,10 @@ const tweaks = {
     disable: returnDislikeCounter.disable,
   },
 };
+
+if (isYouTubePage()) {
+  removeAdblockPopup();
+}
 
 // Initialize extension
 initializeTweaks(tweaks);
