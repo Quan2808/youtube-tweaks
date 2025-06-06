@@ -1,16 +1,30 @@
 {
   "name": "youtube-tweaks-extension",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "lint": "eslint src/**/*.js",
     "format": "prettier --write src/**/*.{js,css,html}",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "version:patch": "npm version patch --no-git-tag-version",
+    "version:minor": "npm version minor --no-git-tag-version",
+    "version:major": "npm version major --no-git-tag-version",
+    "version:patch:build": "npm run version:patch && npm run build",
+    "version:minor:build": "npm run version:minor && npm run build",
+    "version:major:build": "npm run version:major && npm run build",
+    "release:patch": "npm run version:patch && npm run build && git add . && git commit -m \"Release v$(node -p \"require('./package.json').version\")\" && git tag v$(node -p \"require('./package.json').version\")",
+    "release:minor": "npm run version:minor && npm run build && git add . && git commit -m \"Release v$(node -p \"require('./package.json').version\")\" && git tag v$(node -p \"require('./package.json').version\")",
+    "release:major": "npm run version:major && npm run build && git add . && git commit -m \"Release v$(node -p \"require('./package.json').version\")\" && git tag v$(node -p \"require('./package.json').version\")"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "youtube",
+    "extension",
+    "tweaks",
+    "chrome-extension"
+  ],
+  "author": "quan2808",
   "license": "ISC",
   "description": "",
   "devDependencies": {
