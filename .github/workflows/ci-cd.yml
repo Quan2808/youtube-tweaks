@@ -18,21 +18,28 @@ jobs:
   lint-and-format:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository code to access project files.
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Set up Node.js environment with version 20.
+      # Caching is disabled to avoid errors from missing lock files (package-lock.json, etc.).
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: "none" # Explicitly disable caching to prevent lock file errors.
 
+      # Install dependencies using npm install instead of npm ci,
+      # as no package-lock.json is present in the repository.
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
+      # Run ESLint to check for code quality issues in JavaScript files.
       - name: Run lint
         run: npm run lint
 
+      # Run Prettier to verify formatting consistency without modifying files.
       - name: Run format check
         run: npm run format -- --check
 
@@ -40,25 +47,32 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint-and-format
     steps:
+      # Checkout the repository code.
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Set up Node.js environment, disabling caching due to missing lock file.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: "none"
 
+      # Install dependencies using npm install.
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
+      # Bump the version in package.json based on user input (patch, minor, major).
+      # Only runs for manual workflow triggers.
       - name: Bump version
         if: github.event_name == 'workflow_dispatch'
         run: npm run version:${{ github.event.inputs.version_bump }}
 
+      # Build the extension using Webpack, producing output in the dist/ folder.
       - name: Build extension
         run: npm run build
 
+      # Upload the dist/ folder as an artifact for use in other jobs or inspection.
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -66,29 +80,76 @@ jobs:
           path: dist/
           retention-days: 7
 
-  release:
+  commit-version:
     runs-on: ubuntu-latest
     needs: build
     if: github.event_name == 'workflow_dispatch'
     steps:
+      # Checkout the repository with full history for committing and tagging.
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # Set up Node.js environment, disabling caching.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: "none"
 
+      # Install dependencies to access package.json.
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
+      # Retrieve the current version from package.json for commit and tag messages.
       - name: Get version from package.json
         id: get_version
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
+      # Commit the updated package.json with a descriptive message.
+      - name: Commit version bump
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add package.json
+          git commit -m "Bump version to ${{ steps.get_version.outputs.version }}"
+          git push
+
+      # Create and push a Git tag for the new version.
+      - name: Create tag
+        run: |
+          git tag v${{ steps.get_version.outputs.version }}
+          git push origin v${{ steps.get_version.outputs.version }}
+
+  release:
+    runs-on: ubuntu-latest
+    needs: commit-version
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      # Checkout the repository code.
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Set up Node.js environment, disabling caching.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "none"
+
+      # Install dependencies to access package.json.
+      - name: Install dependencies
+        run: npm install
+
+      # Retrieve the current version from package.json.
+      - name: Get version from package.json
+        id: get_version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      # Create a GitHub Release with the zipped extension artifact.
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -103,11 +164,3 @@ jobs:
           files: dist/youtube-tweaks-v${{ steps.get_version.outputs.version }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Commit version bump
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add package.json
-          git commit -m "Bump version to ${{ steps.get_version.outputs.version }}"
-          git push
