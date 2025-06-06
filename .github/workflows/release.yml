@@ -10,35 +10,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: 📦 Checkout source code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Install dependencies
-        run: npm ci
+      - name: 📥 Install dependencies (npm install)
+        run: npm install
 
-      - name: Build extension
+      - name: 🛠️ Build extension
         run: npm run build
 
-      - name: Get version from package.json
+      - name: 📄 Get version from package.json
         id: get_version
         run: |
           VERSION=$(node -p "require('./package.json').version")
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Create and push git tag
+      - name: 🏷️ Create and push git tag
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git tag v${{ env.VERSION }}
           git push origin v${{ env.VERSION }}
 
-      - name: Upload release to GitHub
+      - name: 🚀 Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           name: "Release v${{ env.VERSION }}"
