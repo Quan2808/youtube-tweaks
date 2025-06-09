@@ -191,7 +191,15 @@
         <div class="d-flex justify-content-between align-items-center w-100">
           <div class="d-flex align-items-center">
             <i class="fa-solid fa-code-compare me-2"></i>
-            <span id="extensionVersion"></span>
+            <span id="extensionVersion" class="version-info"></span>
+            <button
+              id="checkUpdateBtn"
+              class="btn btn-link btn-sm p-0 ms-2"
+              title="Check for updates"
+            >
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+            <span id="updateStatus" class="ms-2"></span>
           </div>
 
           <div>
@@ -212,5 +220,6 @@
     </nav>
 
     <script src="../assets/lib/mdb-ui-kit/js/mdb.umd.min.js"></script>
+    <!-- <script src="popup.js"></script> -->
   </body>
 </html>

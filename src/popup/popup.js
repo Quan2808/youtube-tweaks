@@ -1,4 +1,8 @@
-import { displayExtensionVersion } from "../utils/versionChecker";
+import {
+  displayExtensionVersion,
+  initializeVersionCheck,
+  setupPeriodicCheck,
+} from "../utils/versionChecker";
 import { initializeCollapsibleSections } from "../utils/collapseHandler.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -130,4 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateSaveButtonState();
   displayExtensionVersion();
   initializeCollapsibleSections();
+  initializeVersionCheck();
+  setupPeriodicCheck();
 });
