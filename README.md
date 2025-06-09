@@ -1,6 +1,6 @@
-<div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+<div align="center">
     <img src="src/assets/icons/icon128.png" alt="Logo" width="80" height="80">
-    <h3>YouTube Tweaks</h3>
+    <h3 align="center">YouTube Tweaks</h3>
 </div>
 
 **YouTube Tweaks** is a lightweight browser extension crafted to improve your YouTube experience by offering handy customizations. Drawing inspiration from various open-source projects, this extension combines practical tweaks to tailor YouTube to your preferences.
