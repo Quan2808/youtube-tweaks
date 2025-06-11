@@ -36,7 +36,7 @@ youtube-tweaks/
 │ ├── content/          # 📄 Content scripts for YouTube page modifications
 │ │ ├── core/           # 🧹 Core functionality
 │ │ ├── tweaks/         # 🛠️ Individual tweak scripts
-│ │ └── utils/          # 🧰 Utility scripts for DOM and YouTube checks
+│ │ └── utils/          # 🧰 Utility scripts
 │ ├── popup/            # 🪟 Popup UI for settings
 │ └── utils/            # 🔧 Additional utilities
 └── .github/            # 🤖 GitHub Actions for automated releases
