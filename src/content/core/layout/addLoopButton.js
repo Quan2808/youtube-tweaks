@@ -23,12 +23,6 @@ export function addLoopMenuItem() {
       return;
     }
 
-    // Tìm ambient mode item (item thứ 2 trong menu)
-    const ambientModeItem = settingsMenu.children[2];
-    if (!ambientModeItem) {
-      return;
-    }
-
     const loopItem = document.createElement("div");
     loopItem.className = "ytp-menuitem ytp-loop-menuitem";
     loopItem.setAttribute("role", "menuitemcheckbox");
@@ -57,8 +51,7 @@ export function addLoopMenuItem() {
       if (video) video.loop = !isChecked;
     });
 
-    // Chèn loop item trước ambient mode item
-    settingsMenu.insertBefore(loopItem, ambientModeItem);
+    settingsMenu.appendChild(loopItem);
   };
 
   setInterval(createLoopMenuItem, CHECK_INTERVAL_MS);
