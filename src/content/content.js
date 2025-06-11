@@ -4,6 +4,7 @@ import * as cleanShareUrl from "./tweaks/cleanShareUrl.js";
 import * as returnDislikeCounter from "./tweaks/returnDislikeCounter.js";
 import * as expandTheatreMode from "./tweaks/expandTheatreMode.js";
 import { removeAdblockPopup } from "./core/removeAdblockPopup.js";
+import { addLoopMenuItem, removeLoopMenuItem } from "./core/addLoopButton.js";
 
 import {
   initializeTweaks,
@@ -32,6 +33,7 @@ const tweaks = {
 
 if (isYouTubePage()) {
   removeAdblockPopup();
+  addLoopMenuItem();
 }
 
 // Initialize extension
