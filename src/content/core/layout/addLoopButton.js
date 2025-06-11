@@ -1,20 +1,14 @@
+import { createSvgIcon } from "../../utils/createSvgIcon.js";
+
 function createLoopButtonIcon() {
   const icon = document.createElement("div");
   icon.className = "ytp-menuitem-icon";
 
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("width", "24");
-  svg.setAttribute("height", "24");
-  svg.setAttribute("viewBox", "0 0 24 24");
+  const loopIconPath = [
+    "M7 7H17V10L21 6L17 2V5H5V11H7V7ZM17 17H7V14L3 18L7 22V19H19V13H17V17Z",
+  ];
 
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute(
-    "d",
-    "M7 7H17V10L21 6L17 2V5H5V11H7V7ZM17 17H7V14L3 18L7 22V19H19V13H17V17Z"
-  );
-  path.setAttribute("fill", "white");
-
-  svg.appendChild(path);
+  const svg = createSvgIcon(loopIconPath, "24", "24", "0 0 24 24", "white");
   icon.appendChild(svg);
 
   return icon;

@@ -3,8 +3,8 @@ import * as premiumLogo from "./tweaks/premiumLogo.js";
 import * as cleanShareUrl from "./tweaks/cleanShareUrl.js";
 import * as returnDislikeCounter from "./tweaks/returnDislikeCounter.js";
 import * as expandTheatreMode from "./tweaks/expandTheatreMode.js";
-import { removeAdblockPopup } from "./core/removeAdblockPopup.js";
-import { addLoopMenuItem, removeLoopMenuItem } from "./core/addLoopButton.js";
+import { removeAdblockPopup } from "./core/remover/removeAdblockPopup.js";
+import { addLoopMenuItem } from "./core/layout/addLoopButton.js";
 
 import {
   initializeTweaks,
