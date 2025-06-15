@@ -109,11 +109,11 @@ function preventYouTubePopup() {
 }
 
 // Main function to setup bypass
-function setupYouTubePopupBypass() {
+export function setupYouTubePopupBypass() {
   // Bypass current popup if any
   bypassYouTubePopup();
 
- // Setup auto bypass for future
+  // Setup auto bypass for future
   const observer = autoBypassYouTubePopup();
 
   // Setup prevention methods

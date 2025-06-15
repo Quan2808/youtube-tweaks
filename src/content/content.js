@@ -4,8 +4,9 @@ import * as cleanShareUrl from "./tweaks/cleanShareUrl.js";
 import * as returnDislikeCounter from "./tweaks/returnDislikeCounter.js";
 import * as expandTheatreMode from "./tweaks/expandTheatreMode.js";
 import { removeAdblockPopup } from "./core/remover/removeAdblockPopup.js";
-import { removeYouTubePopup } from "./core/remover/removeConfirmDialog.js";
+import { setupYouTubePopupBypass } from "./core/remover/removeConfirmDialog.js";
 import { addLoopMenuItem } from "./core/layout/addLoopButton.js";
+import { addPIPButton } from "./core/layout/addPIPButton.js";
 
 import {
   initializeTweaks,
@@ -34,10 +35,10 @@ const tweaks = {
 
 if (isYouTubePage()) {
   removeAdblockPopup();
-  addLoopMenuItem();
+  setupYouTubePopupBypass();
 
-  const popupBypass = removeYouTubePopup();
-  popupBypass.init();
+  addLoopMenuItem();
+  addPIPButton();
 }
 
 // Initialize extension
