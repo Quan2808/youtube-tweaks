@@ -1,5 +1,5 @@
 const { execSync } = require("child_process");
-const { version } = require("./package.json");
+const fs = require("fs");
 
 const releaseType = process.argv[2] || "patch";
 
@@ -11,13 +11,13 @@ try {
     stdio: "inherit",
   });
 
-  // Get new version
-  const newPackage = require("./package.json");
+  // Read updated package.json manually
+  const newPackage = JSON.parse(fs.readFileSync("./package.json", "utf8"));
   const newVersion = newPackage.version;
 
   // Git operations
   execSync("git add .", { stdio: "inherit" });
-  execSync(`git commit -m "Release v${version}"`, { stdio: "inherit" });
+  execSync(`git commit -m "Release v${newVersion}"`, { stdio: "inherit" });
   execSync("git push origin main", { stdio: "inherit" });
 
   console.log(`✅ Successfully released v${newVersion}`);
