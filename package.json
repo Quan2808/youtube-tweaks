@@ -1,6 +1,6 @@
 {
   "name": "youtube-tweaks-extension",
-  "version": "1.5.8",
+  "version": "1.5.10",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
