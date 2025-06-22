@@ -155,7 +155,7 @@ export function addLoopMenuItem() {
     setupContextMenuSync();
     setupVideoLoopListener();
   } else {
-    console.error("Settings menu not found");
+    // console.error("Settings menu not found");
     return;
   }
 

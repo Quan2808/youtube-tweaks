@@ -6,7 +6,7 @@ import * as expandTheatreMode from "./tweaks/expandTheatreMode.js";
 import { removeAdblockPopup } from "./core/remover/removeAdblockPopup.js";
 import { setupYouTubePopupBypass } from "./core/remover/removeConfirmDialog.js";
 import { addLoopMenuItem } from "./core/layout/addLoopButton.js";
-import { addPIPButton } from "./core/layout/addPIPButton.js";
+import { addPipButtons } from "./core/layout/PIPManager.js";
 
 import {
   initializeTweaks,
@@ -38,7 +38,7 @@ if (isYouTubePage()) {
   setupYouTubePopupBypass();
 
   addLoopMenuItem();
-  addPIPButton();
+  addPipButtons();
 }
 
 // Initialize extension
