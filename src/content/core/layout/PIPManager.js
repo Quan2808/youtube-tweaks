@@ -31,7 +31,7 @@ function addPipButtons() {
     pipContainer.className = "ytp-button";
     pipContainer.style.cssText = "display: inline-block; position: relative;";
 
-    // PIP Icon paths (originally exitPipPaths)
+    // PIP Icon paths
     const pipPaths = [
       {
         d: "M28,28H17a2.0023,2.0023,0,0,1-2-2V20a2.0023,2.0023,0,0,1,2-2H28a2.0027,2.0027,0,0,1,2,2v6A2.0027,2.0027,0,0,1,28,28ZM17,20v6H28.002L28,20Z",
@@ -41,7 +41,7 @@ function addPipButtons() {
       },
     ];
 
-    // Exit PIP Icon paths (originally pipPaths)
+    // Exit PIP Icon paths
     const exitPipPaths = [
       {
         d: "M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 Z",
@@ -76,7 +76,7 @@ function addPipButtons() {
     pipSvg.setAttribute("height", "100%");
     pipSvg.setAttribute("version", "1.1");
     pipSvg.setAttribute("viewBox", "0 0 36 36");
-    pipSvg.setAttribute("width", "100%");
+    pipSvg.setAttribute("width", "75%");
 
     // Add shadow element (like other YouTube buttons)
     const pipUse = document.createElementNS(
@@ -87,6 +87,13 @@ function addPipButtons() {
     pipUse.setAttribute("xlink:href", "#ytp-id-pip-custom");
     pipSvg.appendChild(pipUse);
 
+    // Create group element to apply translation
+    const pipGroup = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "g"
+    );
+    pipGroup.setAttribute("transform", "translate(6, 2)");
+
     // Add main paths for PIP button
     pipPaths.forEach((pathData, index) => {
       const pipPath = document.createElementNS(
@@ -94,13 +101,17 @@ function addPipButtons() {
         "path"
       );
       pipPath.setAttribute("d", pathData.d);
-      pipPath.setAttribute("fill", "#fff");
+      pipPath.setAttribute("fill", "#fff"); // Use white fill as per your code
       if (index === 0) {
         pipPath.setAttribute("id", "ytp-id-pip-custom");
       }
-      pipSvg.appendChild(pipPath);
+      pipGroup.appendChild(pipPath); // Append paths to the group, not directly to SVG
     });
 
+    // Append the group to the SVG
+    pipSvg.appendChild(pipGroup);
+
+    // Append the SVG to the button
     pipButton.appendChild(pipSvg);
 
     pipButton.addEventListener("click", async () => {
