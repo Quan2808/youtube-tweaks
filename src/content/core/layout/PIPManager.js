@@ -1,3 +1,49 @@
+function createPipSvg(paths, svgId) {
+  // Create SVG element with YouTube styling
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("height", "100%");
+  svg.setAttribute("version", "1.1");
+  svg.setAttribute("viewBox", "0 0 36 36");
+  svg.setAttribute("width", paths.length > 1 ? "75%" : "100%");
+
+  // Add shadow element
+  const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use.setAttribute("class", "ytp-svg-shadow");
+  use.setAttribute("xlink:href", `#${svgId}`);
+  svg.appendChild(use);
+
+  // Create group element for PIP button paths to apply translation
+  if (paths.length > 1) {
+    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    group.setAttribute("transform", "translate(6, 2)");
+
+    // Add paths to group
+    paths.forEach((pathData, index) => {
+      const path = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "path"
+      );
+      path.setAttribute("d", pathData.d);
+      path.setAttribute("fill", "#fff");
+      if (index === 0) {
+        path.setAttribute("id", svgId);
+      }
+      group.appendChild(path);
+    });
+
+    svg.appendChild(group);
+  } else {
+    // Add single path for Exit PIP button
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", paths[0].d);
+    path.setAttribute("fill", "#fff");
+    path.setAttribute("id", svgId);
+    svg.appendChild(path);
+  }
+
+  return svg;
+}
+
 function addPipButtons() {
   try {
     // Check if PIP is supported
@@ -48,19 +94,9 @@ function addPipButtons() {
       },
     ];
 
-    // Common SVG attributes
-    const svgAttributes = {
-      viewBox: "0 0 36 36",
-      width: "100%",
-      height: "100%",
-      fill: "#fff",
-      stroke: "none",
-    };
-
     // Create PIP button with proper YouTube styling
     const pipButton = document.createElement("button");
     pipButton.classList.add("ytp-button", "ytp-pip-button");
-
     pipButton.setAttribute("data-priority", "8");
     pipButton.setAttribute("data-tooltip-target-id", "ytp-pip-button");
     pipButton.setAttribute("data-title-no-tooltip", "Picture-in-picture");
@@ -68,50 +104,8 @@ function addPipButtons() {
     pipButton.setAttribute("aria-label", "Picture-in-picture");
     pipButton.setAttribute("aria-keyshortcuts", "p");
 
-    // Create SVG using the same structure as YouTube buttons
-    const pipSvg = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "svg"
-    );
-    pipSvg.setAttribute("height", "100%");
-    pipSvg.setAttribute("version", "1.1");
-    pipSvg.setAttribute("viewBox", "0 0 36 36");
-    pipSvg.setAttribute("width", "75%");
-
-    // Add shadow element (like other YouTube buttons)
-    const pipUse = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "use"
-    );
-    pipUse.setAttribute("class", "ytp-svg-shadow");
-    pipUse.setAttribute("xlink:href", "#ytp-id-pip-custom");
-    pipSvg.appendChild(pipUse);
-
-    // Create group element to apply translation
-    const pipGroup = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "g"
-    );
-    pipGroup.setAttribute("transform", "translate(6, 2)");
-
-    // Add main paths for PIP button
-    pipPaths.forEach((pathData, index) => {
-      const pipPath = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "path"
-      );
-      pipPath.setAttribute("d", pathData.d);
-      pipPath.setAttribute("fill", "#fff"); // Use white fill as per your code
-      if (index === 0) {
-        pipPath.setAttribute("id", "ytp-id-pip-custom");
-      }
-      pipGroup.appendChild(pipPath); // Append paths to the group, not directly to SVG
-    });
-
-    // Append the group to the SVG
-    pipSvg.appendChild(pipGroup);
-
-    // Append the SVG to the button
+    // Create PIP SVG
+    const pipSvg = createPipSvg(pipPaths, "ytp-id-pip-custom");
     pipButton.appendChild(pipSvg);
 
     pipButton.addEventListener("click", async () => {
@@ -152,35 +146,8 @@ function addPipButtons() {
     exitPipButton.setAttribute("aria-keyshortcuts", "p");
     exitPipButton.style.display = "none";
 
-    // Create exit SVG using the same structure
-    const exitPipSvg = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "svg"
-    );
-    exitPipSvg.setAttribute("height", "100%");
-    exitPipSvg.setAttribute("version", "1.1");
-    exitPipSvg.setAttribute("viewBox", "0 0 36 36");
-    exitPipSvg.setAttribute("width", "100%");
-
-    // Add shadow element
-    const exitPipUse = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "use"
-    );
-    exitPipUse.setAttribute("class", "ytp-svg-shadow");
-    exitPipUse.setAttribute("xlink:href", "#ytp-id-exit-pip-custom");
-    exitPipSvg.appendChild(exitPipUse);
-
-    // Add main path for exit button
-    const exitPath = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "path"
-    );
-    exitPath.setAttribute("d", exitPipPaths[0].d);
-    exitPath.setAttribute("fill", "#fff");
-    exitPath.setAttribute("id", "ytp-id-exit-pip-custom");
-    exitPipSvg.appendChild(exitPath);
-
+    // Create Exit PIP SVG
+    const exitPipSvg = createPipSvg(exitPipPaths, "ytp-id-exit-pip-custom");
     exitPipButton.appendChild(exitPipSvg);
 
     exitPipButton.addEventListener("click", async () => {
@@ -222,24 +189,11 @@ function addPipButtons() {
     pipContainer.appendChild(pipButton);
     pipContainer.appendChild(exitPipButton);
 
-    // Insert in the correct position - after miniplayer button or before settings
-    const miniplayer = controls.querySelector(".ytp-miniplayer-button");
+    // Insert in the correct position - after settings button
     const settingsButton = controls.querySelector(".ytp-settings-button");
-
-    // if (miniplayer) {
-    //   // Insert after miniplayer button
-    //   miniplayer.parentNode.insertBefore(pipContainer, miniplayer.nextSibling);
     if (settingsButton) {
-      // Insert after settings button
-      settingsButton.parentNode.insertBefore(
-        pipContainer,
-        settingsButton.nextSibling
-      );
-    } else if (settingsButton) {
-      // Insert before settings button
-      controls.insertBefore(pipContainer, settingsButton);
+      controls.insertBefore(pipContainer, settingsButton.nextSibling);
     } else {
-      // Fallback: prepend to controls
       controls.prepend(pipContainer);
     }
 
@@ -260,10 +214,9 @@ function addPipButtons() {
   }
 }
 
-// Add keyboard shortcut support (enhanced to avoid conflicts)
+// Add keyboard shortcut support
 function addPipKeyboardShortcut() {
   document.addEventListener("keydown", (event) => {
-    // Only handle 'p' key for PIP when not conflicting with YouTube's miniplayer
     if (
       event.key === "p" &&
       event.shiftKey &&
@@ -271,7 +224,6 @@ function addPipKeyboardShortcut() {
       !event.altKey &&
       !event.metaKey
     ) {
-      // Make sure we're not typing in an input field
       const activeElement = document.activeElement;
       if (
         activeElement &&
@@ -285,7 +237,6 @@ function addPipKeyboardShortcut() {
       event.preventDefault();
       event.stopPropagation();
 
-      // Toggle PIP mode
       if (document.pictureInPictureElement) {
         document.exitPictureInPicture().catch(console.error);
       } else {
