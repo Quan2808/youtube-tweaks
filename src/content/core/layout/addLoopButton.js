@@ -16,7 +16,11 @@ export function addLoopMenuItem() {
     },
   ];
 
-  const svgIcon = createSvg(loopPath, "ytp-id-loop");
+  const svgIcon = createSvg(loopPath, "ytp-id-loop", {
+    width: "24",
+    height: "24",
+    viewBox: "0 0 24 24",
+  });
   iconDiv.appendChild(svgIcon);
 
   const labelDiv = document.createElement("div");
