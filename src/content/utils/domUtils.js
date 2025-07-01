@@ -35,3 +35,22 @@ export function observeDOMChange(selector, callback) {
     callback();
   }
 }
+
+export function queryElement(selector, options = {}) {
+  const {
+    logError = true,
+    returnNull = false,
+    containerName = selector,
+  } = options;
+
+  const element = document.querySelector(selector);
+
+  if (!element) {
+    if (logError) {
+      console.error(`Could not find: ${containerName}`);
+    }
+    return returnNull ? null : undefined;
+  }
+
+  return element;
+}

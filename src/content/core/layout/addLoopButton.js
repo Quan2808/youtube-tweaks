@@ -1,4 +1,4 @@
-import { createSvgIcon } from "../../utils/createSvgIcon";
+import { createSvg } from "../../utils/svgUtils";
 
 export function addLoopMenuItem() {
   const loopMenuItem = document.createElement("div");
@@ -10,9 +10,13 @@ export function addLoopMenuItem() {
   const iconDiv = document.createElement("div");
   iconDiv.className = "ytp-menuitem-icon";
 
-  const loopIconPath =
-    "M7 7H17V10L21 6L17 2V5H5V11H7V7ZM17 17H7V14L3 18L7 22V19H19V13H17V17Z";
-  const svgIcon = createSvgIcon(loopIconPath, "24", "24", "0 0 24 24", "white");
+  const loopPath = [
+    {
+      d: "M7 7H17V10L21 6L17 2V5H5V11H7V7ZM17 17H7V14L3 18L7 22V19H19V13H17V17Z",
+    },
+  ];
+
+  const svgIcon = createSvg(loopPath, "ytp-id-loop");
   iconDiv.appendChild(svgIcon);
 
   const labelDiv = document.createElement("div");

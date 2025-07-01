@@ -1,48 +1,5 @@
-function createPipSvg(paths, svgId) {
-  // Create SVG element with YouTube styling
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("height", "100%");
-  svg.setAttribute("version", "1.1");
-  svg.setAttribute("viewBox", "0 0 36 36");
-  svg.setAttribute("width", paths.length > 1 ? "75%" : "100%");
-
-  // Add shadow element
-  const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-  use.setAttribute("class", "ytp-svg-shadow");
-  use.setAttribute("xlink:href", `#${svgId}`);
-  svg.appendChild(use);
-
-  // Create group element for PIP button paths to apply translation
-  if (paths.length > 1) {
-    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    group.setAttribute("transform", "translate(6, 2)");
-
-    // Add paths to group
-    paths.forEach((pathData, index) => {
-      const path = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "path"
-      );
-      path.setAttribute("d", pathData.d);
-      path.setAttribute("fill", "#fff");
-      if (index === 0) {
-        path.setAttribute("id", svgId);
-      }
-      group.appendChild(path);
-    });
-
-    svg.appendChild(group);
-  } else {
-    // Add single path for Exit PIP button
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", paths[0].d);
-    path.setAttribute("fill", "#fff");
-    path.setAttribute("id", svgId);
-    svg.appendChild(path);
-  }
-
-  return svg;
-}
+import { queryElement } from "../../utils/domUtils";
+import { createSvg } from "../../utils/svgUtils";
 
 function addPipButtons() {
   try {
@@ -53,11 +10,11 @@ function addPipButtons() {
     }
 
     // Find the ytp-right-controls container
-    const controls = document.querySelector(".ytp-right-controls");
-    if (!controls) {
-      console.error("Could not find .ytp-right-controls container.");
-      return;
-    }
+    const controls = queryElement(".ytp-right-controls", {
+      containerName: "ytp-right-controls",
+      logError: true,
+      returnNull: true,
+    });
 
     // Check if custom PIP buttons already exist to prevent duplicates
     if (document.getElementById("pip-button-container")) {
@@ -103,7 +60,7 @@ function addPipButtons() {
     pipButton.setAttribute("aria-keyshortcuts", "p");
 
     // Create PIP SVG
-    const pipSvg = createPipSvg(pipPaths, "ytp-id-pip-custom");
+    const pipSvg = createSvg(pipPaths, "ytp-id-pip-custom");
     pipButton.appendChild(pipSvg);
 
     pipButton.addEventListener("click", async () => {
@@ -145,7 +102,7 @@ function addPipButtons() {
     exitPipButton.style.display = "none";
 
     // Create Exit PIP SVG
-    const exitPipSvg = createPipSvg(exitPipPaths, "ytp-id-exit-pip-custom");
+    const exitPipSvg = createSvg(exitPipPaths, "ytp-id-exit-pip-custom");
     exitPipButton.appendChild(exitPipSvg);
 
     exitPipButton.addEventListener("click", async () => {
