@@ -75,22 +75,20 @@ function addPipButtons() {
     const pipContainer = document.createElement("div");
     pipContainer.id = "pip-button-container";
     pipContainer.className = "ytp-button";
-    pipContainer.style.cssText = "display: inline-block; position: relative;";
+    pipContainer.style.cssText =
+      "display: inline-flex; position: relative; vertical-align: middle; padding-bottom: 27px; padding-left: 14px;";
 
     // PIP Icon paths
     const pipPaths = [
       {
-        d: "M28,28H17a2.0023,2.0023,0,0,1-2-2V20a2.0023,2.0023,0,0,1,2-2H28a2.0027,2.0027,0,0,1,2,2v6A2.0027,2.0027,0,0,1,28,28ZM17,20v6H28.002L28,20Z",
-      },
-      {
-        d: "M13,22H4a2.0023,2.0023,0,0,1-2-2V7A2.002,2.002,0,0,1,4,5H26a2.0023,2.0023,0,0,1,2,2v9H26V7H4V20h9Z",
+        d: "M21 3a1 1 0 0 1 1 1v7h-2V5H4v14h6v2H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18zm0 10a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h8zm-1 2h-6v4h6v-4zM6.707 6.293l2.25 2.25L11 6.5V12H5.5l2.043-2.043-2.25-2.25 1.414-1.414z",
       },
     ];
 
     // Exit PIP Icon paths
     const exitPipPaths = [
       {
-        d: "M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 Z",
+        d: "M21 3a1 1 0 0 1 1 1v7h-2V5H4v14h6v2H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18zm0 10a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h8zm-1 2h-6v4h6v-4zm-8.5-8L9.457 9.043l2.25 2.25-1.414 1.414-2.25-2.25L6 12.5V7h5.5z",
       },
     ];
 
