@@ -7,6 +7,7 @@ import { removeAdblockPopup } from "./core/remover/removeAdblockPopup.js";
 import { setupYouTubePopupBypass } from "./core/remover/removeConfirmDialog.js";
 import { addLoopMenuItem } from "./core/layout/addLoopButton.js";
 import { addPipButtons } from "./core/layout/PIPManager.js";
+import { addBrightnessControl } from "./core/layout/BrightnessControl.js";
 
 import {
   initializeTweaks,
@@ -39,6 +40,7 @@ if (isYouTubePage()) {
 
   addLoopMenuItem();
   addPipButtons();
+  addBrightnessControl();
 }
 
 // Initialize extension
